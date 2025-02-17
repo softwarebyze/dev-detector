@@ -38,7 +38,6 @@ const createBanner = () => {
       font-size: 14px;
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      pointer-events: none;
       user-select: none;
       border-bottom-left-radius: 8px;
       text-transform: uppercase;
@@ -46,6 +45,13 @@ const createBanner = () => {
       display: flex;
       align-items: center;
       gap: 8px;
+      opacity: 1;
+      transition: opacity 0.2s ease-in-out;
+      pointer-events: auto;
+    }
+    
+    .dev-mode-banner:hover {
+      opacity: 0;
     }
     
     .dev-mode-banner::after {
