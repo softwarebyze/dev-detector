@@ -1,24 +1,19 @@
-import { useState } from "react"
+import { type FC } from "react"
 
-function IndexPopup() {
-  const [data, setData] = useState("")
-
+const IndexPopup: FC = () => {
   return (
-    <div
-      style={{
-        padding: 16
-      }}>
-      <h2>
-        Welcome to your{" "}
-        <a href="https://www.plasmo.com" target="_blank">
-          Plasmo
-        </a>{" "}
-        Extension!
-      </h2>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
-      <a href="https://docs.plasmo.com" target="_blank">
-        View Docs
-      </a>
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-white sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <h1 className="text-xl font-bold">Dev Detector</h1>
+        </div>
+      </header>
+
+      <main className="flex-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Main content goes here */}
+        </div>
+      </main>
     </div>
   )
 }

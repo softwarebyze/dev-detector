@@ -25,7 +25,11 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/*"
+      "http://localhost:*/*",
+      "https://localhost:*/*"
+    ],
+    "permissions": [
+      "scripting"
     ]
   }
 }
