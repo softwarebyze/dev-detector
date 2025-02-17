@@ -1,7 +1,7 @@
 import type { PlasmoCSConfig } from "plasmo"
 
 export const config: PlasmoCSConfig = {
-  matches: ["http://localhost:*/*", "https://localhost:*/*"],
+  matches: ["http://localhost/*", "https://localhost/*"],
   all_frames: true,
   run_at: "document_start"
 }
