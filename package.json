@@ -27,9 +27,6 @@
     "host_permissions": [
       "http://localhost/*",
       "https://localhost/*"
-    ],
-    "permissions": [
-      "scripting"
     ]
   }
 }
