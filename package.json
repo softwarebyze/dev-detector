@@ -30,7 +30,8 @@
       "https://localhost/*"
     ],
     "permissions": [
-      "storage"
+      "storage",
+      "tabs"
     ],
     "action": {}
   }

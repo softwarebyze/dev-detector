@@ -93,6 +93,26 @@ const createBanner = () => {
   }
 }
 
+const removeBanner = () => {
+  const existingBanners = document.querySelectorAll(".dev-mode-banner")
+  existingBanners.forEach((banner) => banner.remove())
+  const existingStyles = document.querySelectorAll(
+    "style[data-dev-mode-banner]"
+  )
+  existingStyles.forEach((style) => style.remove())
+}
+
+// Handle messages from background script
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.type === "toggleState") {
+    if (message.enabled) {
+      createBanner()
+    } else {
+      removeBanner()
+    }
+  }
+})
+
 // Check if enabled before creating banner
 const init = async () => {
   const enabled = await storage.get("enabled")
@@ -103,19 +123,3 @@ const init = async () => {
 
 // Initial creation
 init()
-
-// Listen for state changes
-storage.watch({
-  enabled: (newValue) => {
-    if (newValue) {
-      createBanner()
-    } else {
-      const existingBanners = document.querySelectorAll(".dev-mode-banner")
-      existingBanners.forEach((banner) => banner.remove())
-      const existingStyles = document.querySelectorAll(
-        "style[data-dev-mode-banner]"
-      )
-      existingStyles.forEach((style) => style.remove())
-    }
-  }
-})
