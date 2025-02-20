@@ -1,10 +1,14 @@
 import type { PlasmoCSConfig } from "plasmo"
 
+import { Storage } from "@plasmohq/storage"
+
 export const config: PlasmoCSConfig = {
   matches: ["http://localhost/*", "https://localhost/*"],
   all_frames: true,
   run_at: "document_start"
 }
+
+const storage = new Storage()
 
 // Create and inject the banner component
 const createBanner = () => {
@@ -89,5 +93,29 @@ const createBanner = () => {
   }
 }
 
+// Check if enabled before creating banner
+const init = async () => {
+  const enabled = await storage.get("enabled")
+  if (enabled) {
+    createBanner()
+  }
+}
+
 // Initial creation
-createBanner()
+init()
+
+// Listen for state changes
+storage.watch({
+  enabled: (newValue) => {
+    if (newValue) {
+      createBanner()
+    } else {
+      const existingBanners = document.querySelectorAll(".dev-mode-banner")
+      existingBanners.forEach((banner) => banner.remove())
+      const existingStyles = document.querySelectorAll(
+        "style[data-dev-mode-banner]"
+      )
+      existingStyles.forEach((style) => style.remove())
+    }
+  }
+})
