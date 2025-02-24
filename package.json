@@ -10,6 +10,7 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@plasmohq/storage": "^1.9.3",
     "plasmo": "0.90.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -27,6 +28,11 @@
     "host_permissions": [
       "http://localhost/*",
       "https://localhost/*"
-    ]
+    ],
+    "permissions": [
+      "storage",
+      "tabs"
+    ],
+    "action": {}
   }
 }
