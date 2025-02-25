@@ -1,7 +1,7 @@
 {
   "name": "dev-detector",
   "displayName": "Dev detector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Add an indication that you're in localhost",
   "author": "Zack Ebenfeld <zackebenfeld@gmail.com>",
   "scripts": {
