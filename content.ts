@@ -54,10 +54,6 @@ const createBanner = () => {
       pointer-events: auto;
     }
     
-    .dev-mode-banner:hover {
-      opacity: 0;
-    }
-    
     .dev-mode-banner::after {
       content: '';
       display: block;
@@ -91,6 +87,24 @@ const createBanner = () => {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", tryInject)
   }
+
+  let boundingBox = banner.getBoundingClientRect()
+  // if mouse is within bounding box, remove banner
+  document.addEventListener("mousemove", (e) => {
+    boundingBox = banner.getBoundingClientRect()
+    if (
+      e.clientX > boundingBox.left &&
+      e.clientX < boundingBox.right &&
+      e.clientY > boundingBox.top &&
+      e.clientY < boundingBox.bottom
+    ) {
+      banner.style.opacity = "0"
+      banner.style.pointerEvents = "none"
+    } else {
+      banner.style.opacity = "1"
+      banner.style.pointerEvents = "auto"
+    }
+  })
 }
 
 const removeBanner = () => {
